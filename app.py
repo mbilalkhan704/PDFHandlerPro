@@ -9,10 +9,11 @@ from datetime import datetime, timedelta
 import shutil
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key")
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max file size
-app.config['UPLOAD_FOLDER'] = Path('uploads')
-app.config['OUTPUT_FOLDER'] = Path('outputs')
+BASE_DIR = Path("/tmp")
+app.config['UPLOAD_FOLDER'] = BASE_DIR / "uploads"
+app.config['OUTPUT_FOLDER'] = BASE_DIR / "outputs"
 app.config['ALLOWED_EXTENSIONS'] = {'pdf'}
 
 # Create necessary folders
@@ -21,10 +22,8 @@ app.config['OUTPUT_FOLDER'].mkdir(exist_ok=True)
 
 # Configure logging
 logging.basicConfig(
-    filename='pdf_handler.log',
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s: %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
+    format='%(asctime)s - %(levelname)s: %(message)s'
 )
 
 
