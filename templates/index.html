@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Handler Pro - Advanced PDF Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-file-pdf"></i>
+                    <h1>PDF Handler Pro</h1>
+                </div>
+                <nav class="nav">
+                    <button class="nav-toggle" id="navToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="#upload" class="nav-link">Upload</a></li>
+                        <li><a href="#operations" class="nav-link">Operations</a></li>
+                        <li><a href="#files" class="nav-link">My Files</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Professional PDF Management Made Simple</h2>
+                <p class="hero-subtitle">Merge, split, encrypt, decrypt, and manage your PDFs with ease</p>
+                <div class="hero-features">
+                    <div class="feature-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>Secure</span>
+                    </div>
+                    <div class="feature-badge">
+                        <i class="fas fa-bolt"></i>
+                        <span>Fast</span>
+                    </div>
+                    <div class="feature-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Private</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Upload Section -->
+            <section id="upload" class="section upload-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        Upload PDF Files
+                    </h2>
+                    <p class="section-subtitle">Drag and drop or click to select files (Max 50MB per file)</p>
+                </div>
+                
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="fileInput" accept=".pdf" multiple hidden>
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <h3>Drag & Drop PDF Files Here</h3>
+                        <p>or</p>
+                        <button class="btn btn-primary" id="selectFileBtn">
+                            <i class="fas fa-folder-open"></i>
+                            Select Files
+                        </button>
+                        <p class="upload-hint">Supports PDF files up to 50MB</p>
+                    </div>
+                </div>
+
+                <div id="uploadProgress" class="upload-progress hidden">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">Uploading...</p>
+                </div>
+            </section>
+
+            <!-- Operations Section -->
+            <section id="operations" class="section operations-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-tools"></i>
+                        PDF Operations
+                    </h2>
+                    <p class="section-subtitle">Select an operation to perform on your PDFs</p>
+                </div>
+
+                <div class="operations-grid">
+                    <!-- Metadata Card -->
+                    <div class="operation-card" data-operation="metadata">
+                        <div class="operation-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <h3>View Metadata</h3>
+                        <p>Read PDF properties and information</p>
+                        <button class="btn btn-secondary" onclick="showOperation('metadata')">
+                            <i class="fas fa-arrow-right"></i>
+                            Open
+                        </button>
+                    </div>
+
+                    <!-- Edit Metadata Card -->
+                    <div class="operation-card" data-operation="edit-metadata">
+                        <div class="operation-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3>Edit Metadata</h3>
+                        <p>Update PDF title, author, and more</p>
+                        <button class="btn btn-secondary" onclick="showOperation('edit-metadata')">
+                            <i class="fas fa-arrow-right"></i>
+                            Open
+                        </button>
+                    </div>
+
+                    <!-- Merge Card -->
+                    <div class="operation-card" data-operation="merge">
+                        <div class="operation-icon">
+                            <i class="fas fa-object-group"></i>
+                        </div>
+                        <h3>Merge PDFs</h3>
+                        <p>Combine multiple PDFs into one</p>
+                        <button class="btn btn-secondary" onclick="showOperation('merge')">
+                            <i class="fas fa-arrow-right"></i>
+                            Open
+                        </button>
+                    </div>
+
+                    <!-- Split Card -->
+                    <div class="operation-card" data-operation="split">
+                        <div class="operation-icon">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <h3>Split PDF</h3>
+                        <p>Extract individual pages from PDF</p>
+                        <button class="btn btn-secondary" onclick="showOperation('split')">
+                            <i class="fas fa-arrow-right"></i>
+                            Open
+                        </button>
+                    </div>
+
+                    <!-- Encrypt Card -->
+                    <div class="operation-card" data-operation="encrypt">
+                        <div class="operation-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>Encrypt PDF</h3>
+                        <p>Add password protection to PDF</p>
+                        <button class="btn btn-secondary" onclick="showOperation('encrypt')">
+                            <i class="fas fa-arrow-right"></i>
+                            Open
+                        </button>
+                    </div>
+
+                    <!-- Decrypt Card -->
+                    <div class="operation-card" data-operation="decrypt">
+                        <div class="operation-icon">
+                            <i class="fas fa-unlock"></i>
+                        </div>
+                        <h3>Decrypt PDF</h3>
+                        <p>Remove password from PDF</p>
+                        <button class="btn btn-secondary" onclick="showOperation('decrypt')">
+                            <i class="fas fa-arrow-right"></i>
+                            Open
+                        </button>
+                    </div>
+
+                    <!-- Extract Text Card -->
+                    <div class="operation-card" data-operation="extract-text">
+                        <div class="operation-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>Extract Text</h3>
+                        <p>Get text content from PDF pages</p>
+                        <button class="btn btn-secondary" onclick="showOperation('extract-text')">
+                            <i class="fas fa-arrow-right"></i>
+                            Open
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Files Section -->
+            <section id="files" class="section files-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-folder-open"></i>
+                        My Files
+                    </h2>
+                    <p class="section-subtitle">Manage your uploaded PDF files</p>
+                </div>
+
+                <div class="files-container" id="filesContainer">
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>No files uploaded yet</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="operationModal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Operation</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 PDF Handler Pro. All rights reserved.</p>
+                <p class="footer-note">
+                    <i class="fas fa-shield-alt"></i>
+                    Your files are processed securely and automatically deleted after 1 hour
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

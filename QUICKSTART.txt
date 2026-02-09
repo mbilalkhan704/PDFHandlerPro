@@ -1,0 +1,114 @@
+╔══════════════════════════════════════════════════════════════╗
+║         PDF HANDLER PRO - QUICK START GUIDE                  ║
+╚══════════════════════════════════════════════════════════════╝
+
+🚀 FASTEST WAY TO START:
+
+Windows Users:
+--------------
+1. Double-click "run.bat"
+2. Wait for installation to complete
+3. Browser will open automatically at http://localhost:5000
+
+Linux/Mac Users:
+----------------
+1. Open terminal in this folder
+2. Run: chmod +x run.sh && ./run.sh
+3. Open browser to http://localhost:5000
+
+
+📦 MANUAL INSTALLATION:
+
+Step 1: Install Python
+-----------------------
+Download Python 3.8+ from python.org if not already installed
+
+Step 2: Install Dependencies
+-----------------------------
+pip install -r requirements.txt
+
+Step 3: Run Application
+------------------------
+python app.py
+
+Step 4: Open Browser
+---------------------
+Navigate to: http://localhost:5000
+
+
+🎯 FEATURES OVERVIEW:
+
+✓ Upload PDFs          - Drag & drop or browse to upload
+✓ View Metadata        - See PDF properties and information  
+✓ Edit Metadata        - Update title, author, subject, etc.
+✓ Merge PDFs           - Combine multiple PDFs into one
+✓ Split PDFs           - Extract individual pages
+✓ Encrypt PDFs         - Add password protection
+✓ Decrypt PDFs         - Remove password protection
+✓ Extract Text         - Get text content from pages
+
+
+🔒 SECURITY FEATURES:
+
+• Session-based file management
+• Automatic file cleanup after 1 hour
+• 50MB per file upload limit
+• Only PDF files accepted
+• No data stored permanently
+
+
+📁 PROJECT STRUCTURE:
+
+pdf-handler-pro/
+├── app.py              ← Flask backend
+├── requirements.txt    ← Dependencies
+├── README.md          ← Full documentation
+├── run.sh / run.bat   ← Quick start scripts
+├── templates/
+│   └── index.html     ← Main interface
+└── static/
+    ├── css/
+    │   └── style.css  ← Styling
+    └── js/
+        └── app.js     ← Frontend logic
+
+
+💡 TROUBLESHOOTING:
+
+Problem: "Module not found" error
+Solution: Run "pip install -r requirements.txt"
+
+Problem: Port 5000 already in use
+Solution: Edit app.py, change port=5000 to another port
+
+Problem: Upload fails
+Solution: Check file is under 50MB and is a valid PDF
+
+Problem: Can't download files
+Solution: Check browser popup blocker settings
+
+
+📚 NEED MORE HELP?
+
+See README.md for complete documentation including:
+• Detailed usage instructions
+• API endpoint documentation  
+• Configuration options
+• Development guide
+• Security details
+
+
+🌐 BROWSER COMPATIBILITY:
+
+✓ Chrome/Edge (Recommended)
+✓ Firefox
+✓ Safari
+✓ Opera
+✓ Mobile browsers
+
+
+═══════════════════════════════════════════════════════════════
+
+Questions? Check the README.md file for detailed information!
+
+═══════════════════════════════════════════════════════════════
